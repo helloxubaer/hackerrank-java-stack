@@ -8,6 +8,7 @@ public class Solution {
 		
 		Scanner sc = new Scanner(System.in);
 		
+		// read line till EOF
 		while (sc.hasNext()) {
 			String input=sc.next();
 			char[] inputArray = input.toCharArray();
@@ -20,6 +21,7 @@ public class Solution {
 		}	
 	}
 	
+	// balance parentheses check
 	public static boolean checkStack(char[] inputArray) {
 		Stack<Character> charStack = new Stack<Character>();
 		for(char c : inputArray) {
@@ -28,13 +30,18 @@ public class Solution {
 			   c=='[') {
 				charStack.push(c);
 			}
+			// if close parentheses found, check start one,
+			//which is the head of the stack
+			// case: ()
 			else if(c==')'){
 					if(!charStack.isEmpty() && charStack.peek() =='(') {
 						charStack.pop();
 					}else {
+						// parentheses not closed/ or some other character found
 						return false;
 					}
 			}
+			// case: {}
 			else if(c=='}') {
 				if(!charStack.isEmpty() && charStack.peek() =='{') {
 					charStack.pop();
@@ -42,6 +49,7 @@ public class Solution {
 					return false;
 				}
 			}
+			// case: []
 			else if(c==']'){
 				if(!charStack.isEmpty() && charStack.peek() =='[') {
 					charStack.pop();
